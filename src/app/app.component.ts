@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterModule],
   selector: 'solapp-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  template: '<h1>Solapp</h1>',
+  
 })
 export class AppComponent {
-  title = 'solapp';
+  
 }
