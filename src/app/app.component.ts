@@ -1,12 +1,23 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { HdWalletMultiButtonComponent } from '@heavy-duty/wallet-adapter-material';
 
 @Component({
   standalone: true,
-  imports: [RouterModule],
+  imports: [
+    RouterModule,
+    HdWalletMultiButtonComponent
+  ],
   selector: 'solapp-root',
-  template: '<h1>Solapp</h1>',
+  template: `
+    <header class="py-8">
+        <h1 class="text-5xl text-center mb-4">Solapp</h1>
+        <div class="flex justify-center">
+        <hd-wallet-multi-button></hd-wallet-multi-button>
+        </div>
+       
+    </header>
+    `,
   
 })
 export class AppComponent {
