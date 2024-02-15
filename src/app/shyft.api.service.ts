@@ -20,8 +20,8 @@ export class ShyftApiService {
 
     return this._httpClient
     .get<{
-        result: { balance: number; info: { image: string } }}>
-        (url.toString(), { headers: this._header })
+        result: { balance: number; info: { image: string } };
+      }>(url.toString(), { headers: this._header })
       .pipe(map((response) => response.result));
   }
 }

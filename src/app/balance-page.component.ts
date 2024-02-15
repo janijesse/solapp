@@ -1,14 +1,12 @@
 import { Component } from "@angular/core";
+import { BalanceSectionComponent } from "./balance-section.component";
 
 @Component({
-    selector: 'solapp-balance-page', 
+    selector: 'solapp-balance-page',
     template: `
-    <section>
-        <h2>Balance</h2>
-        <p>Este es tu saldo</p>
-        
-    </section>
+        <solapp-balance-section></solapp-balance-section>
     `,
     standalone: true,
+    imports: [BalanceSectionComponent]
 })
 export class BalancePageComponent {}
