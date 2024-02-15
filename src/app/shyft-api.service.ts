@@ -4,6 +4,7 @@ import { map, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ShyftApiService {
+  [x: string]: any;
   private readonly _httpClient = inject(HttpClient);
   private readonly _header = { 'x-api-key': 'KMo4qlvdTbRP7pDl' };
   private readonly _mint = '7EYnhQoR9YM3N7UoaKRoA44Uy8JeaZV3qyouov87awMs';
@@ -18,7 +19,7 @@ export class ShyftApiService {
     url.searchParams.set('token', this._mint);
 
     return this._httpClient
-    .get<{
+      .get<{
         result: { balance: number; info: { image: string } };
       }>(url.toString(), { headers: this._header })
       .pipe(map((response) => response.result));
