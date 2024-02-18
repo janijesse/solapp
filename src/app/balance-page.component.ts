@@ -1,15 +1,25 @@
 import { Component } from '@angular/core';
 import { BalanceSectionComponent } from './balance-section.component';
 import { FeaturesSectionComponent } from './features-section.component';
+import { TransactionsSectionComponent } from './transactions-section.component';
 
 @Component({
   selector: 'solapp-balance-page',
-  imports: [FeaturesSectionComponent, BalanceSectionComponent],
+  imports: [
+    FeaturesSectionComponent,
+    BalanceSectionComponent,
+    TransactionsSectionComponent,
+  ],
   template: `
-    <section class="text-center text-3xl px-24 py-32 bg-white bg-opacity-5">
-      <solapp-balance-section></solapp-balance-section>
-    </section>
-    <footer><solapp-features-section></solapp-features-section></footer>
+    <div>
+      <section class="text-center text-2xl px-24 py-24 bg-white bg-opacity-5">
+        <solapp-balance-section></solapp-balance-section>
+        <solapp-transactions-section></solapp-transactions-section>
+      </section>
+      <footer>
+        <solapp-features-section></solapp-features-section>
+      </footer>
+    </div>
   `,
   standalone: true,
 })

@@ -14,6 +14,7 @@ export class ShyftApiService {
       return of(null);
     }
     const url = new URL('https://api.shyft.to/sol/v1/wallet/token_balance');
+
     url.searchParams.set('network', 'mainnet-beta');
     url.searchParams.set('wallet', publicKey);
     url.searchParams.set('token', this._mint);
@@ -22,6 +23,24 @@ export class ShyftApiService {
       .get<{
         result: { balance: number; info: { image: string } };
       }>(url.toString(), { headers: this._header })
+      .pipe(map((response) => response.result));
+  }
+
+  getTransactions(publicKey: string | undefined | null) {
+    if (!publicKey) {
+      return of(null);
+    }
+    const url = new URL('https://api.shyft.to/sol/v1/transaction/history');
+
+    url.searchParams.set('network', 'mainnet-beta');
+    url.searchParams.set('account', publicKey);
+
+    return this._httpClient
+      .get<{
+        result: { amount: string; signature: String; timestamp: string }[];
+      }>(url.toString(), {
+        headers: this._header,
+      })
       .pipe(map((response) => response.result));
   }
 }

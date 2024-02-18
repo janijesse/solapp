@@ -9,10 +9,10 @@ import { ShyftApiService } from './shyft-api.service';
   selector: 'solapp-balance-section',
   template: ` <section>
     @if (account()) {
-      <div class="mb-4 top-4 left-4 flex justify-center items-center gap-2">
+      <div class="mb-2 top-4 left-4 flex justify-center items-center gap-2 ">
         <img [src]="account()?.info?.image" class="w-8 h-8" />
-        <p class="text-2xl font-bold">
-          {{ account()?.balance | number }} Tokens
+        <p>
+          {{ account()?.balance | number }}
         </p>
       </div>
     }
