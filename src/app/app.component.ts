@@ -3,6 +3,8 @@ import { RouterModule } from '@angular/router';
 import { HdWalletMultiButtonComponent } from '@heavy-duty/wallet-adapter-material';
 import { MatAnchor } from '@angular/material/button';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { TransferModalComponent } from './transfer-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   standalone: true,
   imports: [RouterModule, RouterLink, MatAnchor, HdWalletMultiButtonComponent],
@@ -24,9 +26,16 @@ import { RouterLink, RouterOutlet } from '@angular/router';
         </ul>
       </nav>
     </header>
+    <button (click)="onTransfer()">Transfer</button>
     <main>
       <router-outlet></router-outlet>
     </main>
   `,
 })
-export class AppComponent {}
+export class AppComponent {
+  private readonly _matDialog = inject(MatDialog);
+
+  onTransfer() {
+    this._matDialog.open(TransferModalComponent);
+  }
+}
