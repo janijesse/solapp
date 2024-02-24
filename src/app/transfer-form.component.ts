@@ -13,7 +13,7 @@ export interface TransferFormModel {
 export interface TransferFormPayLoad {
   memo: string;
   amount: number;
-  receiverAddresss: string;
+  receiverAddress: string;
 }
 
 @Component({
@@ -120,7 +120,7 @@ export class TransferFormComponent {
       this.submitForm.emit({
         amount: this.model.amount,
         memo: this.model.memo,
-        receiverAddresss: this.model.receiverAddress,
+        receiverAddress: this.model.receiverAddress,
       });
     }
   }

@@ -1,10 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HdWalletMultiButtonComponent } from '@heavy-duty/wallet-adapter-material';
 import { MatAnchor } from '@angular/material/button';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { TransferModalComponent } from './transfer-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ConnectionStore, injectPublicKey } from '@heavy-duty/wallet-adapter';
+import { ShyftApiService } from './shyft-api.service';
 @Component({
   standalone: true,
   imports: [RouterModule, RouterLink, MatAnchor, HdWalletMultiButtonComponent],
@@ -26,16 +28,18 @@ import { MatDialog } from '@angular/material/dialog';
         </ul>
       </nav>
     </header>
-    <button (click)="onTransfer()">Transfer</button>
+
     <main>
       <router-outlet></router-outlet>
     </main>
   `,
 })
-export class AppComponent {
-  private readonly _matDialog = inject(MatDialog);
+export class AppComponent implements OnInit {
+  private readonly _connectionStore = inject(ConnectionStore);
+  private readonly _shyftApiService = inject(ShyftApiService);
+  private readonly _publicKey = injectPublicKey();
 
-  onTransfer() {
-    this._matDialog.open(TransferModalComponent);
+  ngOnInit() {
+    this._connectionStore.setEndpoint(this._shyftApiService.getEndpoint());
   }
 }
