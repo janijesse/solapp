@@ -3,12 +3,12 @@ import { FeaturesSectionComponent } from './features-section.component';
 
 @Component({
   selector: 'solapp-home-page',
-  imports: [FeaturesSectionComponent],
+  imports: [],
   template: `
-    <section class="text-center text-2xl px-24 py-32 bg-white bg-opacity-5">
-      <h2>Sweet Home</h2>
+    <section class="text-center text-2xl px-24 py-32 bg-neutral bg-opacity-5">
+      <p class="text-primary">Sweet Home</p>
     </section>
-    <footer><solapp-features-section></solapp-features-section></footer>
+    
   `,
   standalone: true,
 })

@@ -1,44 +1,42 @@
 import { Component } from '@angular/core';
-import {
-  TransferFormComponent,
-  TransferFormPayLoad,
-} from './transfer-form.component';
+import { MatDialog } from '@angular/material/dialog';
+
+import { TransferFormComponent, TransferFormPayLoad } from './transfer-form.component';
 import { injectTransactionSender } from '@heavy-duty/wallet-adapter';
 import { createTransferInstructions } from '@heavy-duty/spl-utils';
+
+
 @Component({
-  selector: 'solapp-transfer-modal',
-  template: `
-    <div class="px-8 py-16 pb-8">
-      <h2 class="text-2xl">Send funds</h2>
-      <solapp-transfer-form
-        (submitForm)="onTransfer($event)"
-      ></solapp-transfer-form>
-    </div>
-  `,
   standalone: true,
   imports: [TransferFormComponent],
+  selector: 'solapp-transfer-modal',
+  template: `<div class="px-8 py-16 pb-8 bg-neutral ">
+    <h3>Transfer founds</h3>
+    <solapp-transfer-form
+      (submitForm)="onTransferForm($event)"
+    ></solapp-transfer-form>
+  </div>`,
 })
 export class TransferModalComponent {
-  private readonly _transactionSender = injectTransactionSender();
+  private readonly _TransactionSender = injectTransactionSender();
+  onTransferForm(payload: TransferFormPayLoad) {
+    console.log('hello world', payload);
 
-  onTransfer(payload: TransferFormPayLoad) {
-    console.log('hola mundo', payload);
-
-    this._transactionSender
+    this._TransactionSender
       .send(({ publicKey }) =>
         createTransferInstructions({
-          amount: payload.amount,
+          amount: payload.amount * 10 ** 9,
           mintAddress: '7EYnhQoR9YM3N7UoaKRoA44Uy8JeaZV3qyouov87awMs',
           receiverAddress: payload.receiverAddress,
           senderAddress: publicKey.toBase58(),
           fundReceiver: true,
-          memo: payload.memo,
+          memo: payload.memo ?? undefined,
         }),
       )
       .subscribe({
-        next: (signature) => console.log(`Firma: ${signature}`),
+        next: (signature) => console.log(`Signature: ${signature}`),
         error: (error) => console.error(error),
-        complete: () => console.log('Transaction OK!'),
+        complete: () => console.log('Transaction ready'),
       });
   }
 }

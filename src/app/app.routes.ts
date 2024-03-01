@@ -12,6 +12,11 @@ export const appRoutes: Route[] = [
       import('./balance-page.component').then((m) => m.BalancePageComponent),
   },
   {
+    path: 'transactions',
+    loadComponent: () =>
+      import('./transactions-page.component').then((m) => m.TransactionsPageComponent),
+  },
+  {
     path: '**',
     redirectTo: '',
   },

@@ -1,9 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject, input } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
+import { MatOption, MatSelect } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 export interface TransferFormModel {
   memo: string | null;
@@ -18,14 +21,15 @@ export interface TransferFormPayLoad {
 
 @Component({
   selector: 'solapp-transfer-form',
-  template: `<form
+  template: `
+  <form 
     #form="ngForm"
-    class="w-[400px]"
+    class="w-[200px] bg-neutral"
     (ngSubmit)="onSubmitForm(form)"
   >
-    <mat-form-field appearance="fill" class="w-full mb-4">
+    <mat-form-field  class="w-full mb-4 ">
       <mat-label>Concept</mat-label>
-      <input
+      <Input 
         name="memo"
         type="text"
         matInput
@@ -93,7 +97,7 @@ export interface TransferFormPayLoad {
       }
     </mat-form-field>
     <footer class="flex-justify-center">
-      <button type="submit" mat-raised-button color="primary">Enviar</button>
+      <button type="submit" class="btn btn-xs sm:btn-md md:btn-md lg:btn-lg border-primary">Enviar</button>
     </footer>
   </form> `,
   standalone: true,
