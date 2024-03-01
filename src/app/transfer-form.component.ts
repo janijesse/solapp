@@ -4,8 +4,7 @@ import { MatButton } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
-import { MatOption, MatSelect } from '@angular/material/select';
-import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 export interface TransferFormModel {
@@ -36,6 +35,7 @@ export interface TransferFormPayLoad {
         placeholder="Payament for..."
         [(ngModel)]="model.memo"
         required
+        
         #memoControl="ngModel"
       />
       <mat-icon matSuffix>description</mat-icon>
@@ -83,6 +83,7 @@ export interface TransferFormPayLoad {
         placeholder="Receiver Public Key "
         [(ngModel)]="model.receiverAddress"
         required
+        
         #receiverAddressControl="ngModel"
       />
       <mat-icon matSuffix>key</mat-icon>
@@ -98,12 +99,27 @@ export interface TransferFormPayLoad {
     </mat-form-field>
     <footer class="flex-justify-center">
       <button type="submit" class="btn btn-xs sm:btn-md md:btn-md lg:btn-lg border-primary">Enviar</button>
+      <button
+          type="button"
+          class="btn btn-xs sm:btn-md md:btn-md lg:btn-lg border-error"
+          color="warn"
+          (click)="onCancel()"
+          [disabled]="disabled()"
+        >
+          Cancelar
+        </button>
     </footer>
   </form> `,
   standalone: true,
   imports: [FormsModule, MatFormFieldModule, MatInput, MatIcon, MatButton],
 })
 export class TransferFormComponent {
+disabled(): unknown {
+throw new Error('Method not implemented.');
+}
+onCancel() {
+throw new Error('Method not implemented.');
+}
   readonly model: TransferFormModel = {
     memo: null,
     amount: null,

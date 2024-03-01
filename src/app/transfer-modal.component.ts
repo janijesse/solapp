@@ -1,25 +1,24 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-
 import { TransferFormComponent, TransferFormPayLoad } from './transfer-form.component';
-import { injectTransactionSender } from '@heavy-duty/wallet-adapter';
+
 import { createTransferInstructions } from '@heavy-duty/spl-utils';
+import { injectTransactionSender } from '@heavy-duty/wallet-adapter';
 
 
 @Component({
   standalone: true,
   imports: [TransferFormComponent],
   selector: 'solapp-transfer-modal',
-  template: `<div class="px-8 py-16 pb-8 bg-neutral ">
-    <h3>Transfer founds</h3>
+  template: `<div class="px-4 pb-8 pt-16">
+    <h2 class="text-center mb-8">Transfer founds</h2>
     <solapp-transfer-form
-      (submitForm)="onTransferForm($event)"
+      (submitForm)="onTransfer($event)"
     ></solapp-transfer-form>
   </div>`,
 })
 export class TransferModalComponent {
   private readonly _TransactionSender = injectTransactionSender();
-  onTransferForm(payload: TransferFormPayLoad) {
+  onTransfer(payload: TransferFormPayLoad) {
     console.log('hello world', payload);
 
     this._TransactionSender
