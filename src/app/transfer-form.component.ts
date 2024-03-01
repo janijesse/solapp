@@ -91,7 +91,7 @@ export interface TransferFormPayload {
         <input
           name="receiverAddress"
           matInput
-          placeholder="Public Key de la cuenta destino."
+          placeholder="Receiver Key"
           type="text"
           [(ngModel)]="model.receiverAddress"
           #receiverAddressControl="ngModel"
@@ -202,7 +202,7 @@ export class TransferFormComponent {
       this.model.amount === null ||
       this.model.token === null
     ) {
-      this._matSnackBar.open('⚠️ El formulario es inválido.', 'Cerrar', {
+      this._matSnackBar.open('Invalid Form', 'Close', {
         duration: 4000,
         horizontalPosition: 'end',
       });
