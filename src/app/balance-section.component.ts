@@ -13,9 +13,9 @@ import { MatCard } from '@angular/material/card';
 @Component({
   selector: 'solapp-balance-section',
   standalone: true,
-  imports: [DecimalPipe, MatButton],
+  imports: [DecimalPipe, MatButton, MatCard],
   template: `
-    <section>
+    <section class="text-center text-2xl px-24 py-32 bg-neutral bg-opacity-5">
       @if (account()) {
         <div class="mb-2 top-4 left-4 flex justify-center items-center gap-2 ">
           <img [src]="account()?.info?.image" class="w-8 h-8" />
@@ -23,9 +23,14 @@ import { MatCard } from '@angular/material/card';
             {{ account()?.balance | number }}
           </p>
         </div>
-        <button mat-raised-button color="primary" (click)="onTransfer()">
-          Transfer funds
+        <button
+          class="btn btn-xs sm:btn-md md:btn-md lg:btn-lg border-accent"
+          (click)="onTransfer()"
+        >
+          Transfer
         </button>
+      } @else {
+        <p class="text-warning-content">Connect your wallet</p>
       }
     </section>
   `,

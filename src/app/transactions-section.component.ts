@@ -13,11 +13,11 @@ import { ShyftApiService } from './shyft-api.service';
   template: `
     @if (transactions()) {
       <div class="container mx-auto p-2">
-        <h2 class="text-center mb-4  ">Transactions History</h2>
+        <h2 class="text-center mb-4 ">Transactions History</h2>
 
         <div class="overflow-x-auto">
           <mat-card>
-            <table mat-table [dataSource]="transactions() ?? []">
+            <table class="table table-xs"mat-table [dataSource]="transactions() ?? []">
               <ng-container matColumnDef="timestamp">
                 <th mat-header-cell *matHeaderCellDef>
                   Timestamp
@@ -56,6 +56,9 @@ import { ShyftApiService } from './shyft-api.service';
           </mat-card>
         </div>
       </div>
+    }
+    @else{
+      <p class="text-primary">Connect your wallet</p>
     }
   `,
 })
